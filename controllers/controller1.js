@@ -1,9 +1,18 @@
 exports.login = (req,res)=>{
     res.render('login');
-    console.log(process.env.MONGO_DB);
 }
 
 exports.POSTlogin = (req,res)=>{
     
-    res.render('login');
+    res.render('logout');
+}
+
+exports.logout = (req,res)=>{
+    
+    req.session.destroy((error)=>{
+        //SESSION INACTIVE FROM HERE
+        //WORKS
+        if(error)console.log(error);
+        else res.redirect('/');
+    });
 }

@@ -28,6 +28,8 @@ app.use(session({
     maxAge:1000*60*5,
     store:MongoStore.create({
         mongoUrl:process.env.MONGO_DB,
+        collectionName:'session',
+        strigify:false
     }),
     genid:function(req){
         return  uuid.v4();

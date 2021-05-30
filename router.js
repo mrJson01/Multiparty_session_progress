@@ -39,16 +39,17 @@ Router.post('/',checkSchema({
             req.session.email = req.body.email;
             
             req.session.save((error)=>{
-                console.log(error);
-                console.log('saved');
+                
+                 next();
             })
         });
         
     }
     
-    next();
     
     
 },controller1.POSTlogin);
+
+Router.get('/logout',controller1.logout);
 
 module.exports = Router;
