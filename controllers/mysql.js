@@ -1,10 +1,12 @@
+require('dotenv').config({path:'\.env'});
+
 const mysql = require('mysql');
 
 var Pool = mysql.createPool({
-    host:"localhost",
-    user:'root',
-    password:'',
-    database:'test'
+    host:process.env.MYSQL_DB_HOST,
+    user:process.env.MYSQL_DB_NAME,
+    password:process.env.MYSQL_DB_PASSWORD,
+    database:process.env.MYSQL_DB_DBNAME
 });
 
 var checkEmail = (email) =>{

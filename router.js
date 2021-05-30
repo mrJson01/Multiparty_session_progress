@@ -28,10 +28,27 @@ Router.post('/',checkSchema({
         }
     }
     
-}),(req,res)=>{
+}),(req,res,next)=>{
     const errors = validationResult(req);
     
-    console.log(errors.array());
-});
+    if(errors.isEmpty()){
+        
+            req.session.regenerate((err)=>{
+            //console.log(err);
+                
+            req.session.email = req.body.email;
+            
+            req.session.save((error)=>{
+                console.log(error);
+                console.log('saved');
+            })
+        });
+        
+    }
+    
+    next();
+    
+    
+},controller1.POSTlogin);
 
 module.exports = Router;
